@@ -1,0 +1,15 @@
+在執行的時候，遇到template<class T> function會有
+=> undefined reference to `void PrintArr<int>(int*, int)' 的問題
+原因是因為:
+>
+https://bytefreaks.net/programming-2/c/c-undefined-reference-to-templated-class-function
+<
+
+其中提到方法
+1. 把所有template的特化都實做出來
+2. 把實作檔(.cpp)的所有資料貼到.h檔
+3. 在把原本的<filename>.cpp檔改成<filename>_impl.h並在.h檔後面include他，這作法跟2.差不多
+
+還沒解決的地方:
+int *a = new int[11]{0, 3, 9, 2, 0, 4, 5, 6, 7, 1, 8};
+這筆資料sort 完會出現 0 0 0 1 2 3 4 5 6 7 8 錯的
